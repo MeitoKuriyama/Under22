@@ -1,0 +1,27 @@
+body{
+	background-color: darkgray;
+}
+
+.main{
+	background-color: white;
+	height: 500px;
+}
+
+/*　　　ヘッダー　　　*/
+header{
+	height: 50px;
+}
+
+/*　　　フッター　　　*/
+
+/*　　　メイン　　　*/
+.main{
+	width: 375px;
+	margin: auto;
+}
+
+/*　　　検索　　　*/
+
+/*　　　検索結果　　　*/
+
+/*　　　結果表示　　　*/

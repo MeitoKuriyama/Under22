@@ -1,0 +1,30 @@
+$test: false;
+
+@if $test {
+	* {
+		border: solid 0.3px red;
+		opacity: 0.9;
+
+	}
+	body {
+		background-color: midnightblue;
+	}
+	.main {
+		background-color: lightgreen;
+	}
+	.main__search {
+		background-color: aqua;
+	}
+	.main__search__staition {
+		background-color: chartreuse;
+	}
+	.main__search__line {
+		background-color: chartreuse;
+	}
+	.main__search_view {
+		background-color: hotpink;
+	}
+	.main__search_view__item {
+		background-color: chartreuse;
+	}
+}

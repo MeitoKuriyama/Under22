@@ -1,10 +1,13 @@
 @charset "UTF-8";
 .main__search {
-  height: 300px;
+  margin-bottom: 100px;
 }
+
 .main__search .main__search__staition {
   border: solid 1px black;
   border-radius: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 75%;
   height: 40px;
@@ -12,6 +15,7 @@
   display: flex;
   align-Items: center;
 }
+
 .main__search .main__search__staition__hatu {
   font-size: 20px;
   margin: 0 10px;
@@ -20,14 +24,18 @@
   padding: 5px;
   border: solid 1px black;
   border-radius: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   align-Items: center;
   justify-Content: center;
 }
+
 .main__search input {
   height: 40px;
   width: 150px;
 }
+
 .main__search .main__search__staition__batubox {
   height: 40px;
   width: 64px;
@@ -36,14 +44,18 @@
   border-left: none;
   border-radius: 20px;
 }
+
 .main__search .main__search__staition__batu {
   width: 100%;
   height: 100%;
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   align-Items: center;
   justify-Content: center;
 }
+
 .main__search .main__search__staition__batu::before, .main__search .main__search__staition__batu::after {
   content: "";
   position: absolute;
@@ -56,16 +68,23 @@
   background: black;
   /* バツ印の色 */
 }
+
 .main__search .main__search__staition__batu::before {
-  transform: translate(-50%, -50%) rotate(45deg);
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+          transform: translate(-50%, -50%) rotate(45deg);
 }
+
 .main__search .main__search__staition__batu::after {
-  transform: translate(-50%, -50%) rotate(-45deg);
+  -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+          transform: translate(-50%, -50%) rotate(-45deg);
 }
+
 .main__search .main__search__staition__musimegane {
   margin: 0 5px 0 auto;
 }
+
 .main__search .main__search__staition__musimegane img {
   width: 24px;
   height: 24px;
-}/*# sourceMappingURL=main__search.css.map */
+}
+/*# sourceMappingURL=main__search.css.map */

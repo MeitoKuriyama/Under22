@@ -44,3 +44,19 @@ header{
 /*　　　検索結果　　　*/
 
 /*　　　結果表示　　　*/
+
+/*   ボタン   */
+.main__btns{
+	width: 250px;
+	height: auto;
+	margin: 30px auto;
+	font-size: 20px;
+	text-align: center;
+	border: 1px solid #000;
+	border-radius: 25px;
+}
+
+.main__btns__btn{
+	width: 100%;
+	border-bottom: 1px solid #000;
+}

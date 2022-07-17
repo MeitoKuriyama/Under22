@@ -1,0 +1,63 @@
+body{
+	background-color: white;
+}
+
+.main{
+	background-color: white;
+}
+
+/*　　　ヘッダー　　　*/
+header{
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	border-bottom: solid 0.5px lightgray;
+}
+
+.header__logo__img{
+	width: 50px;
+	height: 50px;
+}
+
+/*　　　フッター　　　*/
+.footer{
+	width:100%;
+	height: 40px;
+	bottom: 0;
+}
+.footer p{
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	padding: 10px 0 0 0;
+	font-size: 14px;
+	color: darkgrey;
+}
+
+/*　　　メイン　　　*/
+.main{
+	width: 375px;
+	margin: auto;
+}
+
+/*　　　検索　　　*/
+
+/*　　　検索結果　　　*/
+
+/*　　　結果表示　　　*/
+
+/*   ボタン   */
+.main__btns{
+	width: 250px;
+	height: auto;
+	margin: 30px auto;
+	font-size: 20px;
+	text-align: center;
+	border: 1px solid #000;
+	border-radius: 25px;
+}
+
+.main__btns__btn{
+	width: 100%;
+	border-bottom: 1px solid #000;
+}

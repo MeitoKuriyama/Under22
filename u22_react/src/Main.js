@@ -1,5 +1,6 @@
 import React from "react";
 import img from './img/train.png';
+import musimegane from './img/musimegane.png';
 
 
 
@@ -17,35 +18,41 @@ class Main extends React.Component {
 		const searchList = [
 			{
 				maru: '発',
-				value: '出発駅検索'
+				value: '出発駅検索',
+				img: {musimegane}
 			},
 			{
 				maru: '着',
-				value: '到着駅検索'
+				value: '到着駅検索',
+				img: {musimegane}
 			}
 		];
 
-		// 検索結果
+		// 検索結果		countがあふれちゃうの直す
 		const trainList = [
 			{
-				time: '00:00',
+				time: '10:00',
 				to: '新宿行',
-				train: '急行'
+				train: '各駅',
+				count: 8
 			},
 			{
-				time: '00:00',
-				to: '新宿行',
-				train: '急行'
+				time: '20:00',
+				to: '札幌行',
+				train: '急行',
+				count: 6
 			},
 			{
-				time: '00:00',
-				to: '新宿行',
-				train: '急行'
+				time: '30:00',
+				to: '銀河行',
+				train: '999',
+				count: 7
 			},
 			{
-				time: '00:00',
-				to: '新宿行',
-				train: '急行'
+				time: '40:00',
+				to: '地獄行',
+				train: '通勤',
+				count: 5
 			},
 
 		]
@@ -63,6 +70,12 @@ class Main extends React.Component {
 								</div>
 
 								<input type="text" placeholder={searchList.value}></input>
+
+								{/* ここにオンクリックを追加する */}
+								{/* オンクリックで候補駅をよみこんで表示　ワイは配列の文字表示だけやる。 */}
+								<div className="main__search__staition__musimegane">
+									<img src={musimegane} />
+								</div>
 							</div>
 						);
 					})}
@@ -83,7 +96,7 @@ class Main extends React.Component {
 									<div className="main__search_view__item__main">
 										<div className="main__search_view__item__main__imgs">
 											{
-												Array(8).fill().map(() => {
+												Array(trainList.count).fill().map(() => {
 													return (
 														<img src={img} alt="" />
 													);

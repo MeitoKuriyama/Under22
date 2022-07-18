@@ -1,24 +1,50 @@
 import React from "react";
 
+// 画像import
 import img from './img/train.png';
 import musimegane from './img/musimegane.png';
-
+import imgRight from './img/right.png';
+import imgLeft from './img/left.png';
 
 
 class Main extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selectedTrain: 0
+			isModalOpen: true,
+			selectedTrain: 0,
+			ridingPosition: 1,
 		};
 	}
 
 
-	selectTrainId(id){
+	// 選択後の車両選択画面
+	selectTrainId(trainList){
 		let a;
-		if(id == this.state.selectedTrain){
+		if(trainList.id == this.state.selectedTrain){
 			a = (
-				<div className="main__train__select"></div>
+				<>
+					<div className="main__train__select">
+						<img src={imgLeft} alt="" className="arrowImg" onClick={() => {
+							if(this.state.ridingPosition > 1){
+								this.selectRidingPosition(this.state.ridingPosition-1)
+							}
+						}} />
+						<div className="main__train__select__main">
+							<img src={img} alt="" />
+							<p>{this.state.ridingPosition}両目</p>
+						</div>
+						<img src={imgRight} alt="" className="arrowImg" onClick={() => {
+							if(this.state.ridingPosition < trainList.count){
+								this.selectRidingPosition(this.state.ridingPosition+1)
+							}
+						}} />
+					</div>
+					<div className="train__select__btn">
+						<p>乗車する</p>
+					</div>
+				</>
+
 			);
 		}
 		return a;
@@ -26,6 +52,10 @@ class Main extends React.Component {
 
 	selectTrain(id){
 		this.setState({selectedTrain: id});
+	}
+
+	selectRidingPosition(num){
+		this.setState({ridingPosition: num});
 	}
 
 	render() {
@@ -77,6 +107,17 @@ class Main extends React.Component {
 
 		];
 
+		// モーダル作成
+		let modal;
+		if(this.state.isModalOpen){
+			modal = (
+				<div className="modal">
+
+				</div>
+			);
+		}
+
+
 		return(
 			<div className="main">
 
@@ -105,7 +146,14 @@ class Main extends React.Component {
 				<div className="main__search_view">
 					{trainList.map((trainList) => {
 						return (
-							<div className="main__search_view__item" onClick={() => {this.selectTrain(trainList.id)}}>
+							<div className="main__search_view__item" onClick={() => {
+								this.selectTrain(trainList.id)
+								if(this.state.selectedTrain != trainList.id){
+									// ここで他の電車を選択時にRidingPositionをリセットする
+									// こいつのせいでいきなり車両選択することができなくなった解決方法求
+									this.selectRidingPosition(1)
+								}
+							}}>
 
 								<div className="main__search_view__item__info">
 									<p>{trainList.time}</p>
@@ -116,15 +164,24 @@ class Main extends React.Component {
 								<div className="main__search_view__item__main">
 									<div className="main__search_view__item__main__imgs">
 										{
-											Array(trainList.count).fill().map(() => {
-												return (
-													<img src={img} alt="" />
-												);
+											Array(trainList.count).fill().map((value, index) => {
+												if(trainList.id == this.state.selectedTrain && this.state.ridingPosition == index+1){
+													return (
+														<img src={img} alt="" className="ridingImg"/>
+													);
+												}else{
+													return (
+														<img src={img} alt="" onClick={() => {this.selectRidingPosition(index+1)}}/>
+													);
+												}
+
+
+
 											})
 										}
 									</div>
 
-									{this.selectTrainId(trainList.id)}
+									{this.selectTrainId(trainList)}
 
 								</div>
 
@@ -133,6 +190,7 @@ class Main extends React.Component {
 						);
 					})}
 				</div>
+				{modal}
 			</div>
 		);
 	}

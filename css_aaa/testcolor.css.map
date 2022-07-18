@@ -1,1 +1,9 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"testcolor.css"}
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "testcolor.scss"
+    ],
+    "names": [],
+    "file": "testcolor.css"
+}

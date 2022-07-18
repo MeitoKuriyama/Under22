@@ -38,15 +38,50 @@
             margin: 10px auto;
             display: flex;
             justify-content: center;
+
+			.ridingImg{
+				background-color: lightblue;
+			}
+
         }
 
+		// 選択した後に出る画面
         .main__train__select{
-            height: 100px;
+			display: flex;
+			justify-content: center;
+			margin-bottom: 5px;
 
             img{
-                width: 100px;
+				height: 60px;
+				width: auto;
+				margin: 0 15px;
             }
+
+			p{
+				text-align: center;
+			}
+
+			.arrowImg{
+				height: 80px;
+				border: solid 1px black;
+				background-color: lightgray;
+				padding: 30px 5px;
+			}
         }
+
+		.train__select__btn{
+			border: solid 0.5px black;
+			border-radius: 10px;
+			width: 70%;
+			height: 50px;
+			background-color: lightblue;
+			margin: 10px auto;
+			display: flex;
+			text-align: center;
+			flex-direction: column;
+			justify-content: center;
+
+		}
     }
 
 }

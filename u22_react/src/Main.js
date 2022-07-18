@@ -8,7 +8,7 @@ class Main extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-
+			
 		}
 	}
 
@@ -29,9 +29,16 @@ class Main extends React.Component {
 		];
 
 		// 検索結果		countがあふれちゃうの直す
-		const trainList = [
+		let trainList = [
+			// {
+			// 	userTouch: true,	デフォルトはfalse　オンクリックで見る
+			// 	time: '10:00',		発時間
+			// 	to: '新宿行',		行き先
+			// 	train: '各駅',		種類
+			// 	count: 8			車両数
+			// },
 			{
-				userTouch: false,	// デフォルトはfalse
+				userTouch: true,
 				time: '10:00',
 				to: '新宿行',
 				train: '各駅',
@@ -61,6 +68,18 @@ class Main extends React.Component {
 
 		]
 
+		function userTouch(userTouch){
+			let select__train;
+			if(userTouch){
+				select__train = (
+					<div className="main__train__select">
+						<img src={img} />
+					</div>
+				);
+			}
+			return select__train
+		}
+
 		return(
 			<div className="main">
 
@@ -89,7 +108,11 @@ class Main extends React.Component {
 				<div className="main__search_view">
 					{trainList.map((trainList) => {
 						return (
-							<div className="main__search_view__item">
+
+							<div className="main__search_view__item" onClick={() => {
+								// クリックされた時の処理
+								trainList.userTouch = ture
+							}}>
 
 								<div className="main__search_view__item__info">
 									<p>{trainList.time}</p>
@@ -107,11 +130,10 @@ class Main extends React.Component {
 											})
 										}
 									</div>
-								</div>
 
-								{/* オンクリックで表示させる */}
-								<div className="main__train__select">
-
+									{/* オンクリックで表示させる */}
+									{userTouch(trainList.userTouch)}
+									
 								</div>
 
 							</div>

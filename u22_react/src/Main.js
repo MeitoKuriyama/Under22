@@ -11,7 +11,7 @@ class Main extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isModalOpen: true,
+			isModalOpen: false,
 			modalTrainInfo: "",
 			modalMode: "",
 			modalYn: "",
@@ -191,7 +191,7 @@ class Main extends React.Component {
 		}else if(this.state.modalYn && this.state.modalMode == "help"){
 			mdoal_btns = (
 				<div className="modal__btns">
-					<h1>助けを求めてる人</h1>
+					<p>助けを求めてる人</p>
 					<div modal__needHelpList>
 						{needHelpList.map((needHelpList) => {
 							return (
@@ -201,7 +201,7 @@ class Main extends React.Component {
 							);
 						})}
 					</div>
-					<p onClick={() => {
+					<p className="lineMarginP" onClick={() => {
 						this.modalClose();
 						this.modalModeChange("");
 						this.modalYnChange("");
@@ -211,14 +211,18 @@ class Main extends React.Component {
 			);
 		}else if(this.state.modalYn && this.state.modalMode == "needHelp"){
 			mdoal_btns = (
-				<div className="modal__btns">
+				<div className="modal__messe">
 					<h1>助けを求めました！</h1>
-					<p onClick={() => {
-						this.modalClose();
-						this.modalModeChange("");
-						this.modalYnChange("");
-					}}>キャンセル</p>
+					<div className="modal__btns">
+
+						<p onClick={() => {
+							this.modalClose();
+							this.modalModeChange("");
+							this.modalYnChange("");
+						}}>キャンセル</p>
+					</div>
 				</div>
+
 			);
 		}
 

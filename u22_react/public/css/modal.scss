@@ -6,13 +6,17 @@
 	left: 0;
 	background-color: rgba(0, 0, 0, 0.6);
 
+	h2{
+		font-size: 13px;
+	}
+
 	.modal__inner{
 		position: absolute;
 		top: 100px;
 		right: 0;
 		left: 0;
 		width: 300px;
-		padding: 10px 10px 60px;
+		padding: 10px 10px 30px;
 		margin: auto;
 		background-color: rgb(255, 255, 255);
 		border-radius: 8px;
@@ -30,12 +34,17 @@
 		justify-content: center;
 
 		p{
-			padding: 5px;
+			padding: 10px;
 			text-align: center;
 		}
 		.lineP{
 			border-top: solid 1px black;
 			border-bottom: solid 1px black;
+		}
+
+		.lineMarginP{
+			margin-top: 15px;
+			border-top: solid 1px black;
 		}
 
 		.ynBtn{
@@ -47,5 +56,15 @@
 				border-radius: 5px;
 			}
 		}
+	}
+
+	.modal__needHelpList__item{
+		margin: 10px 0;
+	}
+
+	.modal__messe{
+		font-size: 20px;
+		text-align: center;
+		margin-top: 50px;
 	}
 }

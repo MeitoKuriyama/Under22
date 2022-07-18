@@ -12,6 +12,9 @@ class Main extends React.Component {
 		super(props);
 		this.state = {
 			isModalOpen: true,
+			modalTrainInfo: "",
+			modalMode: "",
+			modalYn: "",
 			selectedTrain: 0,
 			ridingPosition: 1,
 		};
@@ -40,7 +43,13 @@ class Main extends React.Component {
 							}
 						}} />
 					</div>
-					<div className="train__select__btn">
+					<div className="train__select__btn" onClick={() => {
+						let info = trainList.time + "発 " + trainList.train + " " + trainList.to;
+						this.pushModalInfo(info);
+						this.modalOpen();
+						this.modalModeChange("");
+						this.modalYnChange("");
+					}} >
 						<p>乗車する</p>
 					</div>
 				</>
@@ -56,6 +65,25 @@ class Main extends React.Component {
 
 	selectRidingPosition(num){
 		this.setState({ridingPosition: num});
+	}
+
+	modalOpen(){
+		this.setState({isModalOpen: true});
+	}
+	modalClose(){
+		this.setState({isModalOpen: false});
+	}
+
+	pushModalInfo(value){
+		this.setState({modalTrainInfo: value});
+	}
+
+	modalModeChange(value){
+		this.setState({modalMode: value});
+	}
+
+	modalYnChange(value){
+		this.setState({modalYn: value});
 	}
 
 	render() {
@@ -74,7 +102,7 @@ class Main extends React.Component {
 			}
 		];
 
-		// 検索結果		countがあふれちゃうの直す
+		// 検索結果のテスト変数
 		const trainList = [
 			{
 				id: 1,
@@ -104,15 +132,105 @@ class Main extends React.Component {
 				train: '通勤',
 				count: 5
 			},
-
 		];
 
+		//助けを求めてる人一覧のテスト変数
+		const needHelpList = [
+			{
+				id: 1,
+				time: "11:11",
+				position: 1,
+			},
+			{
+				id: 2,
+				time: "22:22",
+				position: 2,
+			},
+			{
+				id: 3,
+				time: "33:33",
+				position: 3,
+			}
+		];
+
+
+
 		// モーダル作成
+		let mdoal_btns;
+		if(this.state.modalMode === ""){
+			mdoal_btns = (
+				<div className="modal__btns">
+					<p onClick={() => {
+						this.modalModeChange("help")
+						this.modalYnChange("");
+					}}>助ける</p>
+					<p className="lineP" onClick={() => {
+						this.modalModeChange("needHelp");
+						this.modalYnChange("");
+					}}>助けを求める</p>
+					<p onClick={() => {
+						this.modalClose();
+						this.modalModeChange();
+						this.modalYnChange("");
+					}}>車両選択に戻る</p>
+				</div>
+			);
+		}else if(this.state.modalYn === ""){
+			mdoal_btns = (
+				<div className="modal__btns">
+					<p>確認</p>
+					<div className="ynBtn">
+						<p onClick={() => {this.modalYnChange(true)}}>はい！</p>
+						<p onClick={() => {
+							this.modalYnChange(false);
+							this.modalModeChange("");
+						}}>いいえ</p>
+					</div>
+				</div>
+			);
+		}else if(this.state.modalYn && this.state.modalMode == "help"){
+			mdoal_btns = (
+				<div className="modal__btns">
+					<h1>助けを求めてる人</h1>
+					<div modal__needHelpList>
+						{needHelpList.map((needHelpList) => {
+							return (
+								<div className="modal__needHelpList__item">
+									{needHelpList.time} {needHelpList.position}両目
+								</div>
+							);
+						})}
+					</div>
+					<p onClick={() => {
+						this.modalClose();
+						this.modalModeChange("");
+						this.modalYnChange("");
+					}}>車両選択に戻る</p>
+				</div>
+
+			);
+		}else if(this.state.modalYn && this.state.modalMode == "needHelp"){
+			mdoal_btns = (
+				<div className="modal__btns">
+					<h1>助けを求めました！</h1>
+					<p onClick={() => {
+						this.modalClose();
+						this.modalModeChange("");
+						this.modalYnChange("");
+					}}>キャンセル</p>
+				</div>
+			);
+		}
+
+
 		let modal;
 		if(this.state.isModalOpen){
 			modal = (
 				<div className="modal">
-
+					<div className="modal__inner">
+						<h2>{this.state.modalTrainInfo} の{this.state.ridingPosition}両目に乗車しました</h2>
+						{mdoal_btns}
+					</div>
 				</div>
 			);
 		}
@@ -132,8 +250,6 @@ class Main extends React.Component {
 
 								<input type="text" placeholder={searchList.value}></input>
 
-								{/* ここにオンクリックを追加する */}
-								{/* オンクリックで候補駅をよみこんで表示　ワイは配列の文字表示だけやる。 */}
 								<div className="main__search__staition__musimegane">
 									<img src={musimegane} />
 								</div>

@@ -1,4 +1,5 @@
 import React from "react";
+
 import img from './img/train.png';
 import musimegane from './img/musimegane.png';
 
@@ -8,8 +9,23 @@ class Main extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			
+			selectedTrain: 0
+		};
+	}
+
+
+	selectTrainId(id){
+		let a;
+		if(id == this.state.selectedTrain){
+			a = (
+				<div className="main__train__select"></div>
+			);
 		}
+		return a;
+	}
+
+	selectTrain(id){
+		this.setState({selectedTrain: id});
 	}
 
 	render() {
@@ -29,56 +45,37 @@ class Main extends React.Component {
 		];
 
 		// 検索結果		countがあふれちゃうの直す
-		let trainList = [
-			// {
-			// 	userTouch: true,	デフォルトはfalse　オンクリックで見る
-			// 	time: '10:00',		発時間
-			// 	to: '新宿行',		行き先
-			// 	train: '各駅',		種類
-			// 	count: 8			車両数
-			// },
+		const trainList = [
 			{
-				userTouch: true,
+				id: 1,
 				time: '10:00',
 				to: '新宿行',
 				train: '各駅',
 				count: 8
 			},
 			{
-				userTouch: false,
+				id: 2,
 				time: '20:00',
 				to: '札幌行',
 				train: '急行',
 				count: 6
 			},
 			{
-				userTouch: false,
+				id: 3,
 				time: '30:00',
 				to: '銀河行',
 				train: '999',
 				count: 7
 			},
 			{
-				userTouch: false,
+				id: 4,
 				time: '40:00',
 				to: '地獄行',
 				train: '通勤',
 				count: 5
 			},
 
-		]
-
-		function userTouch(userTouch){
-			let select__train;
-			if(userTouch){
-				select__train = (
-					<div className="main__train__select">
-						<img src={img} />
-					</div>
-				);
-			}
-			return select__train
-		}
+		];
 
 		return(
 			<div className="main">
@@ -108,11 +105,7 @@ class Main extends React.Component {
 				<div className="main__search_view">
 					{trainList.map((trainList) => {
 						return (
-
-							<div className="main__search_view__item" onClick={() => {
-								// クリックされた時の処理
-								trainList.userTouch = ture
-							}}>
+							<div className="main__search_view__item" onClick={() => {this.selectTrain(trainList.id)}}>
 
 								<div className="main__search_view__item__info">
 									<p>{trainList.time}</p>
@@ -131,10 +124,10 @@ class Main extends React.Component {
 										}
 									</div>
 
-									{/* オンクリックで表示させる */}
-									{userTouch(trainList.userTouch)}
-									
+									{this.selectTrainId(trainList.id)}
+
 								</div>
+
 
 							</div>
 						);

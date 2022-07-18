@@ -31,24 +31,28 @@ class Main extends React.Component {
 		// 検索結果		countがあふれちゃうの直す
 		const trainList = [
 			{
+				userTouch: false,	// デフォルトはfalse
 				time: '10:00',
 				to: '新宿行',
 				train: '各駅',
 				count: 8
 			},
 			{
+				userTouch: false,
 				time: '20:00',
 				to: '札幌行',
 				train: '急行',
 				count: 6
 			},
 			{
+				userTouch: false,
 				time: '30:00',
 				to: '銀河行',
 				train: '999',
 				count: 7
 			},
 			{
+				userTouch: false,
 				time: '40:00',
 				to: '地獄行',
 				train: '通勤',
@@ -85,27 +89,32 @@ class Main extends React.Component {
 				<div className="main__search_view">
 					{trainList.map((trainList) => {
 						return (
-							<>
-								<div className="main__search_view__item">
-									<div className="main__search_view__item__info">
-										<p>{trainList.time}</p>
-										<p>{trainList.to}</p>
-										<p>{trainList.train}</p>
-									</div>
+							<div className="main__search_view__item">
 
-									<div className="main__search_view__item__main">
-										<div className="main__search_view__item__main__imgs">
-											{
-												Array(trainList.count).fill().map(() => {
-													return (
-														<img src={img} alt="" />
-													);
-												})
-											}
-										</div>
+								<div className="main__search_view__item__info">
+									<p>{trainList.time}</p>
+									<p>{trainList.to}</p>
+									<p>{trainList.train}</p>
+								</div>
+
+								<div className="main__search_view__item__main">
+									<div className="main__search_view__item__main__imgs">
+										{
+											Array(trainList.count).fill().map(() => {
+												return (
+													<img src={img} alt="" />
+												);
+											})
+										}
 									</div>
 								</div>
-							</>
+
+								{/* オンクリックで表示させる */}
+								<div className="main__train__select">
+
+								</div>
+
+							</div>
 						);
 					})}
 				</div>

@@ -6,6 +6,34 @@ import musimegane from './img/musimegane.png';
 import imgRight from './img/right.png';
 import imgLeft from './img/left.png';
 
+// firebase
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
+
+async function firebase(){
+	const firebaseConfig = {
+		apiKey: "AIzaSyAYIhYPtr1AlZhhuC9MlpNf81ohbEcNRRg",
+		authDomain: "under22.firebaseapp.com",
+		projectId: "under22",
+		storageBucket: "under22.appspot.com",
+		messagingSenderId: "328401528406",
+		appId: "1:328401528406:web:8cd758dda060829ef9fdf7"
+	};
+	const app = initializeApp(firebaseConfig);
+	const db = getFirestore(app);
+
+	try {
+		const docRef = await addDoc(collection(db, "users"), {
+		first: "hujiii",
+		last: "Lovelace",
+		born: 1
+		});
+		console.log("Document written with ID: ", docRef.id);
+	} catch (e) {
+		console.error("Error adding document: ", e);
+	}
+}
 
 class Main extends React.Component {
 	constructor(props) {
@@ -19,7 +47,6 @@ class Main extends React.Component {
 			ridingPosition: 1,
 		};
 	}
-
 
 	// 選択後の車両選択画面
 	selectTrainId(trainList){
@@ -51,6 +78,7 @@ class Main extends React.Component {
 						this.modalYnChange("");
 					}} >
 						<p>乗車する</p>
+
 					</div>
 				</>
 

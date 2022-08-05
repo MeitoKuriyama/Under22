@@ -1,8 +1,8 @@
-import React from "react";
-
-// firebase
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,28 +17,9 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-import { getDatabase, ref, set } from "firebase/database";
+const app = initializeApp(firebaseConfig);
 
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
 
-class Firebase extends React.Component {
-	render() {
-
-		function writeUserData(userId, name, email, imageUrl) {
-			const db = getDatabase();
-			set(ref(db, 'users/' + userId), {
-				username: name,
-				email: email,
-				profile_picture : imageUrl
-			});
-		}
-
-		return(
-			<div>aaa
-				{writeUserData("123","みり","miri@aaa.com","imgURL")}
-			</div>
-		);
-
-	}
-}
-
-export default Firebase;
+export default db;
